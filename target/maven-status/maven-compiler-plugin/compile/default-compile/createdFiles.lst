@@ -1,0 +1,4 @@
+com\bank\vsam\Account.class
+com\bank\vsam\VsamApiApplication.class
+com\bank\vsam\AccountController.class
+com\bank\vsam\VsamAccountService.class

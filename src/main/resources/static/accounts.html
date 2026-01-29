@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VSAM Account Viewer</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Bank Account Data (VSAM → JSON)</h2>
+
+<table id="acctTable">
+    <thead>
+        <tr>
+            <th>Account No</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Balance</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script>
+fetch("/api/accounts")
+    .then(response => response.json())
+    .then(data => {
+        const tbody = document.querySelector("#acctTable tbody");
+
+        data.forEach(acc => {
+            const row = document.createElement("tr");
+
+            row.innerHTML =
+                "<td>" + acc.accountNo + "</td>" +
+                "<td>" + acc.name + "</td>" +
+                "<td>" + acc.accountType + "</td>" +
+                "<td>" + acc.balance + "</td>" +
+                "<td>" + acc.status + "</td>";
+
+            tbody.appendChild(row);
+        });
+    })
+    .catch(err => {
+        alert("Error loading account data");
+        console.error(err);
+    });
+</script>
+
+</body>
+</html>
