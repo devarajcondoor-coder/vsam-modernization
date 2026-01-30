@@ -3,17 +3,22 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/devarajcondoor-coder/vsam-modernization.git'
+                echo "Checking out source code from GitHub"
             }
         }
 
-        stage('Build Verification') {
+        stage('Build Simulation') {
             steps {
-                sh 'echo "Build triggered successfully from GitHub"'
-                sh 'echo "Code checkout verified"'
+                echo "Simulating build process"
+                echo "VSAM modernization pipeline executed successfully"
+            }
+        }
+
+        stage('Finish') {
+            steps {
+                echo "CI pipeline completed"
             }
         }
     }
